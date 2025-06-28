@@ -1,0 +1,5 @@
+package tttn_2025.phoneShop.handlers.endPoints.products.childs.productVariants.selft.dto;
+
+public class ProductVariantDto {
+    
+}
