@@ -12,10 +12,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 import tttn_2025.phoneShop.common.entities.audit.AuditableEntity;
 import tttn_2025.phoneShop.handlers.endPoints.brands.selft.entity.BrandEntity;
 
@@ -24,7 +24,7 @@ import tttn_2025.phoneShop.handlers.endPoints.brands.selft.entity.BrandEntity;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @EqualsAndHashCode(callSuper = false)
 public class ProductLineEntity extends AuditableEntity {
 

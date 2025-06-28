@@ -1,25 +1,23 @@
 package tttn_2025.phoneShop.handlers.endPoints.brands.selft.dto;
 
-import java.time.Instant;
 import java.util.UUID;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import tttn_2025.phoneShop.common.dtos.audit.AuditDto;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class BrandDto {
+@SuperBuilder
+public class BrandDto extends AuditDto {
     private UUID uid;
     @NotBlank(message = "name cannot blank")
     private String name;
     private String photoUrl;
-    private Instant createdAt;
-    private Instant updatedAt;
-    private UUID createdBy;
-    private UUID updatedBy;
 }
