@@ -49,6 +49,7 @@ public class BrandService {
     public BrandDto readByUid(UUID uid) {
         BrandEntity brand = brandRepo.findById(uid)
                 .orElseThrow(() -> new EntityNotFoundException("Brand not found with uid: " + uid));
+        System.out.println(String.format("\n\n\n%s\n\n\n", brand.getCreatedBy()));
         return brandMapper.toDto(brand);
     }
 
