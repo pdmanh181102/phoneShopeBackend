@@ -43,7 +43,7 @@ public class ProductLineService {
         this.classUtilService = classUtilService;
     }
 
-    @CacheEvict(value = { "produtLine.readAll", "produtLine.nameExists" }, allEntries = true)
+    @CacheEvict(value = { "productLine.readAll", "produtLine.nameExists" }, allEntries = true)
     public ProductLineDto create(UUID brandUid, String name) {
         BrandEntity brand = brandRepo.findById(brandUid)
                 .orElseThrow(() -> new EntityNotFoundException("Brand not found with uid: " + brandUid));
@@ -103,9 +103,11 @@ public class ProductLineService {
         return productLineMapper.toDto(productLine);
     }
 
-    @Cacheable(value = "productLine.nameExists", key = "#name")
-    public boolean nameExists(String name) {
-        return productLineRepo.existsByName(name);
+    @Cacheable(value = "productLine.nameExists", key = "T(java.util.Objects).hash(#brandUid, #name)")
+    public boolean nameExists(UUID brandUid, String name) {
+        BrandEntity brand = brandRepo.findById(brandUid)
+                .orElseThrow(() -> new EntityNotFoundException("brand not found with uid: " + brandUid));
+        return productLineRepo.existsByNameAndBrand(name, brand);
     }
 
 }

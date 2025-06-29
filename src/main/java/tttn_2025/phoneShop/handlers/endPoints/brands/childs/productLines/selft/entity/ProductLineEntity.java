@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,7 +21,9 @@ import tttn_2025.phoneShop.common.entities.audit.AuditableEntity;
 import tttn_2025.phoneShop.handlers.endPoints.brands.selft.entity.BrandEntity;
 
 @Entity
-@Table(name = "product_lines")
+@Table(name = "product_lines", uniqueConstraints = {
+        @UniqueConstraint(columnNames = { "name", "brand_uid" })
+})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -33,7 +36,7 @@ public class ProductLineEntity extends AuditableEntity {
     @Column(name = "uid", updatable = false, nullable = false)
     private UUID uid;
 
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -7,9 +7,10 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import tttn_2025.phoneShop.handlers.endPoints.brands.childs.productLines.selft.entity.ProductLineEntity;
+import tttn_2025.phoneShop.handlers.endPoints.brands.selft.entity.BrandEntity;
 
 @Repository
 public interface ProductLineRepo
         extends JpaRepository<ProductLineEntity, UUID>, JpaSpecificationExecutor<ProductLineEntity> {
-    boolean existsByName(String name);
+    boolean existsByNameAndBrand(String name, BrandEntity brand);
 }

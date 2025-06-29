@@ -72,9 +72,11 @@ public class ProductLineController {
     /// OTHER
     ///
 
-    @GetMapping("/product-lines/exists")
-    public ResponseEntity<Map<String, Boolean>> nameExists(@RequestParam(name = "name") String name) {
-        return ResponseEntity.ok(Map.<String, Boolean>of("exists", productLineService.nameExists(name)));
+    @GetMapping("/brands/{brandUid}/product-lines/exists")
+    public ResponseEntity<Map<String, Boolean>> nameExists(
+            @PathVariable(name = "brandUid") UUID brandUid,
+            @RequestParam(name = "name") String name) {
+        return ResponseEntity.ok(Map.<String, Boolean>of("exists", productLineService.nameExists(brandUid, name)));
     }
 
 }
