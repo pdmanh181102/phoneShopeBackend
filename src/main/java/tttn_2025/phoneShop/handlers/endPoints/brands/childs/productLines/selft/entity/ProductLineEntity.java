@@ -36,7 +36,7 @@ public class ProductLineEntity extends AuditableEntity {
     @Column(name = "uid", updatable = false, nullable = false)
     private UUID uid;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, columnDefinition = "NVARCHAR(50)")
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)

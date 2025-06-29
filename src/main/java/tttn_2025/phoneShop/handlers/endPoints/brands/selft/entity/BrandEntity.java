@@ -33,10 +33,10 @@ public class BrandEntity extends AuditableEntity {
     @Column(name = "uid", updatable = false, nullable = false)
     private UUID uid;
 
-    @Column(name = "name", unique = true, nullable = false)
+    @Column(name = "name", unique = true, nullable = false, columnDefinition = "NVARCHAR(50)")
     private String name;
 
-    @Column(name = "photo_url", nullable = true)
+    @Column(name = "photo_url", nullable = true, columnDefinition = "NVARCHAR(200)")
     private String photoUrl;
 
     @OneToMany(mappedBy = "brand", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
