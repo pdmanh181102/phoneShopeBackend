@@ -1,5 +1,6 @@
 package tttn_2025.phoneShop.handlers.endPoints.brands.selft.controller;
 
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import tttn_2025.phoneShop.common.helpers.delay.DelayHelper;
 import tttn_2025.phoneShop.handlers.endPoints.brands.selft.dto.BrandDto;
 import tttn_2025.phoneShop.handlers.endPoints.brands.selft.service.BrandService;
 
@@ -43,6 +45,7 @@ public class BrandController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "name") String sortBy,
             @RequestParam(defaultValue = "ASC") Sort.Direction direction) {
+        DelayHelper.Delay(500L);
         return ResponseEntity.ok(brandService.readAll(page, size, sortBy, direction));
     }
 
@@ -77,8 +80,8 @@ public class BrandController {
     ///
 
     @GetMapping("/exists")
-    public ResponseEntity<Boolean> nameExists(@RequestParam(name = "name") String name) {
-        return ResponseEntity.ok(brandService.nameExists(name));
+    public ResponseEntity<Map<String, Boolean>> nameExists(@RequestParam(name = "name") String name) {
+        return ResponseEntity.ok(Map.<String, Boolean>of("exists", brandService.nameExists(name)));
     }
 
 }
